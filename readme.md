@@ -4,10 +4,6 @@
 
 请使用 MySQL8.0 以下，否则 MyISAM 引擎不支持分区，如果用 Innodb 引擎，导入速度和建索引速度将大打折扣，我使用的是 MySQL5.7。
 
-### 下载 mysql shell 工具
-
-mysql shell 下载地址: https://downloads.mysql.com/archives/shell/ 
-
 ### 修改配置文件
 
 my.ini 配置文件添加以下两行
@@ -44,6 +40,10 @@ CREATE TABLE `qqs`  (
 ) ENGINE=MyISAM DEFAULT CHARSET=ASCII PARTITION BY HASH(qq) PARTITIONS 26;
 ```
 
+### 下载 mysql shell 工具
+
+mysql shell 下载地址: https://downloads.mysql.com/archives/shell/ 
+
 ### 运行 mysqlsh 导入数据
 
 cmd 命令行进入 mysql shell 的 bin 目录运行  mysqlsh.exe，接着输入如下命令
@@ -70,10 +70,12 @@ util.importTable("D:/0/qq_6.9_8e_update.txt",{"schema":"kuzi","table":"qqs","fie
 use kuzi;
 
 #微博的索引
-ALTER TABLE `kuzi`.`weibos`  ADD INDEX uid_phone (uid,phone);
+ALTER TABLE `kuzi`.`weibos`  ADD INDEX uid (uid);
+ALTER TABLE `kuzi`.`weibos`  ADD INDEX phone (phone);
 
 QQ 的索引
-ALTER TABLE `kuzi`.`qqs`  ADD INDEX qq_phone (qq,phone);
+ALTER TABLE `kuzi`.`qqs`  ADD INDEX qq (qq);
+ALTER TABLE `kuzi`.`qqs`  ADD INDEX phone (phone);
 ```
 
 这一步就比较久了，微博耗时 45 分钟，QQ 耗时 90 分钟
