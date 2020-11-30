@@ -71,11 +71,11 @@ use kuzi;
 
 #微博的索引
 ALTER TABLE `kuzi`.`weibos`  ADD INDEX uid (uid);
-ALTER TABLE `kuzi`.`weibos`  ADD INDEX phone (phone);
+ALTER TABLE `kuzi`.`weibos`  ADD INDEX phone (phone); #按需建立
 
 QQ 的索引
 ALTER TABLE `kuzi`.`qqs`  ADD INDEX qq (qq);
-ALTER TABLE `kuzi`.`qqs`  ADD INDEX phone (phone);
+ALTER TABLE `kuzi`.`qqs`  ADD INDEX phone (phone); #按需建立
 ```
 
 这一步就比较久了，微博耗时 45 分钟，QQ 耗时 90 分钟
